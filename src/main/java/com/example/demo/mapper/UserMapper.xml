@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.mapper.UserMapper">
+    <select id="selectUserList" parameterType="String" resultType="com.example.demo.entity.Student">
+            select name,age,favorite from student where name=#{name} for update
+    </select>
+    <select id="selectUserList01" parameterType="String" resultType="com.example.demo.entity.Student">
+        select name,age,favorite from student where name=#{name}
+    </select>
+    <select id="selectStudentJoin"  resultType="com.example.demo.entity.StudentJoin">
+        select st.name,st.age,st.favorite,hi.high from student st left join hightongji hi on st.name = hi.name
+    </select>
+    <select id="selectProduct" parameterType="String" resultType="com.example.demo.entity.Product">
+        select id,productName,num,version from product where productName = #{productName}
+    </select>
+    <update id="updateStudent">
+        update student set
+                           name = #{name},
+                           age = #{age},
+                           favorite = #{favorite}
+        where name = #{name}
+    </update>
+    <update id="updateProduct">
+        update product set
+                           num = #{num}
+        where id = #{id}
+    </update>
+    <update id="updateProductLeG">
+        update product set
+            num = num - #{need},
+        where id = #{id} and version = version and (num - #{need}) >= 0
+    </update>
+
+    <update id="updateProductMybatisPlus">
+        update product set
+                           id = #{id},
+                           num = #{num},
+                           productName = #{productName},
+                           version = #{version} + 1
+                           where id = #{id} and version = #{version}
+    </update>
+</mapper>
