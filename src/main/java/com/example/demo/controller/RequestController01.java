@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.entity.Student;
+import com.example.demo.service.StudentFind;
 import com.example.demo.service.imp.StudentImp;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class RequestController01 {
 
     @Autowired
-    StudentImp studentImp;
+    StudentFind studentImp;
 
     @GetMapping(value = "index01")
     @ResponseBody
